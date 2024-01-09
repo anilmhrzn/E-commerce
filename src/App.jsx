@@ -5,7 +5,6 @@ import CategoriesContext, {
   ClickedCategories,
 } from "./Store/CategoriesContext";
 import { useEffect, useState } from "react";
-// import Home from "./Components/Home"
 
 const App = () => {
   const [categories, setCategories] = useState([]);
@@ -13,10 +12,12 @@ const App = () => {
   const fetchAndUpdateCategories = (data) => {
     setCategories(data);
   };
+
   const handleCategoryClick = (category) => {
+    localStorage.setItem("categoriesClicked", JSON.stringify(category));
     setCategoriesClicked(category);
   };
-
+  
   useEffect(() => {
     fetch("https://dummyjson.com/products/categories")
       .then((res) => res.json())
@@ -30,13 +31,13 @@ const App = () => {
         value={{ categories, fetchAndUpdateCategories }}
       >
         <ClickedCategories.Provider
-          value={{ categoriesClicked, handleCategoryClick }}
+          value={{ categoriesClicked,setCategoriesClicked, handleCategoryClick }}
         >
           <Header />
           <Outlet />
         </ClickedCategories.Provider>
+        <Footer />
       </CategoriesContext.Provider>
-      <Footer />
     </>
   );
 };

@@ -10,7 +10,7 @@ const CategoriesButton = ({ isOpen, toggleDropdown }) => {
 
   return (
     <>
-      <li className="mr-6">
+      <li className="mr-6 z-20">
         <div className="relative inline-block text-left">
           <button
             onClick={toggleDropdown}

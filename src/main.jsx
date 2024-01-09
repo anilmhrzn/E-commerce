@@ -4,6 +4,7 @@ import App from './App.jsx'
 import {RouterProvider, createBrowserRouter} from 'react-router-dom'
 import './index.css'
 import Login, { signin } from './Login/Login.jsx'
+// import Home from './Components/Home.jsx'
 import Home from './Components/Home.jsx'
 import Categories from './Components/Categories/Categories.jsx'
 // import Categories from './Components/Header/CategoriesButton.jsx'
@@ -18,7 +19,7 @@ const router=createBrowserRouter([{
       element:<Home/>
     }
     ,{
-      path:'/categories',
+      path:'/categories/:categoryName',
       element:<Categories/>
     }
   ]
