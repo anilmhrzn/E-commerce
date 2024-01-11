@@ -24,7 +24,9 @@ const Header = () => {
         </li>
 
         {/* categories component is rendered sending isopen state and toggleDropdown function as props to make dropdown work */}
+        <li className="mr-6 z-30">
         <Categories isOpen={isOpen} toggleDropdown={toggleDropdown} />
+        </li>
         <li className="mr-6">
           <Link className="text-blue-500 hover:text-blue-800" to="/">
             Home

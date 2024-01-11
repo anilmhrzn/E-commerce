@@ -1,7 +1,8 @@
 /* eslint-disable react/no-unknown-property */
 
 import { useRef, useState } from "react";
-import Products from "../Products/Products";
+import Products from "./Products/Products";
+import ImageSlider from "./Header/ImageSlider";
 
 const Home = () => {
   const [searchResults, setSearchResults] = useState([]);
@@ -25,17 +26,17 @@ const Home = () => {
   return (
     <>
       <section className="p-6 bg-gray-800 text-gray-100">
-        <div className="container grid gap-6 mx-auto text-center ">
-          <div className="w-full px-6 py-16 rounded-md sm:px-12 md:px-16 xl:col-span-2 bg-gray-900">
+	<div className="container grid gap-6 mx-auto text-center grid-cols-1 md:grid-cols-2 ">
+		<div className="w-full px-6 py-16 rounded-md sm:px-12 md:px-16  bg-gray-900">
             <span className="block mb-2 text-violet-400">
               Get Amazing Deals
             </span>
             <h1 className="text-5xl font-extrabold text-gray-50">
-              Your Faourite one are also on list 
+              Your Faourite one are also on list
             </h1>
             <p className="my-8">
               <span className="font-medium text-gray-50">
-              Search for the product
+                Search for the product
               </span>
             </p>
             <form
@@ -51,26 +52,29 @@ const Home = () => {
                   id="name"
                   type="text"
                   placeholder="Your name"
-                  className="w-full md:w-1/4 text-black rounded-md  p-3 border-gray-700"
+                  className="w-full text-black rounded-md  p-3 border-gray-700"
                 />
               </div>
 
               <button
                 type="submit"
-                className="w-full md:w-1/4 py-2 font-semibold rounded bg-violet-400 text-gray-900"
+                className="w-full  py-2 font-semibold rounded bg-violet-400 text-gray-900"
               >
                 Search
               </button>
             </form>
           </div>
-          {/* <img
+        <ImageSlider />
+          
+        </div>
+
+        {/* <img
             src="https://source.unsplash.com/random/480x360"
             alt=""
             className="object-cover w-full rounded-md xl:col-span-3 bg-gray-500"
           /> */}
 
-          {/* <!-- TW Elements is free under AGPL, with commercial license required for specific uses. See more details: https://tw-elements.com/license/ and contact us for queries at tailwind@mdbootstrap.com -->  */}
-        </div>
+        {/* <!-- TW Elements is free under AGPL, with commercial license required for specific uses. See more details: https://tw-elements.com/license/ and contact us for queries at tailwind@mdbootstrap.com -->  */}
         {/* {searchResults.length > 0 && (
           <div className="mt-8">
             <h2 className="text-xl font-semibold text-white">Search Results:</h2>

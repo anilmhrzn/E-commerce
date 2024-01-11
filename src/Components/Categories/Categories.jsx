@@ -1,38 +1,27 @@
-import { useContext, useEffect, useState } from "react";
-import { ClickedCategories } from "../../Store/CategoriesContext";
-import Products from "../../Products/Products";
+import {  useEffect, useState } from "react";
+// import { ClickedCategories } from "../../Store/CategoriesContext";
+import Products from "../Products/Products";
 import { useNavigate, useParams } from "react-router-dom";
+import { useClickedCategory } from "../../Store/ClickedCategoriesContext";
 
 const Categories = () => {
   const navigate = useNavigate();
-  const {categoryName} = useParams();
+  const { categoryName } = useParams();
   const [products, setProducts] = useState([]);
-  const { categoriesClicked, setCategoriesClicked } =
-    useContext(ClickedCategories);
+  const { categoriesClicked, setCategoriesClicked } = useClickedCategory();
   useEffect(() => {
-    // console.log(categoryName);
     let storedClickedCategories;
-
     if (categoryName) {
       setCategoriesClicked(categoryName);
-       storedClickedCategories = categoryName;
-    } 
-    // else {
-      // storedClickedCategories = JSON.parse(
-      //   localStorage.getItem("categoriesClicked")
-      // );
-      // if (storedClickedCategories) {
-      //   setCategoriesClicked(storedClickedCategories);
-      // }
-    // }
-
+      storedClickedCategories = categoryName;
+    }
 
     fetch(`https://dummyjson.com/products/category/${storedClickedCategories}`)
       .then((res) => res.json())
       .then((data) => {
-        if(data.products.length===0){
+        if (data.products.length === 0) {
           // show page not found
-          navigate("/404")
+          navigate("/404");
         }
         setProducts(data.products);
       });
