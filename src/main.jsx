@@ -7,6 +7,8 @@ import Login, { signin } from './Components/Login/Login.jsx'
 import Home from './Components/Home.jsx'
 import Categories from './Components/Categories/Categories.jsx'
 import Cart from './Components/Cart/Cart.jsx'
+// import Cart from './Components/Cart/Cart.jsx'
+
 
 const router=createBrowserRouter([{
   path:"/",

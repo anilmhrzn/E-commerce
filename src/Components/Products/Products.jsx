@@ -1,13 +1,16 @@
 /* eslint-disable react/prop-types */
 import { IoMdCart } from "react-icons/io";
 import StarRatingOfProduct from "./StarRatingOfProduct";
-import {  useCart } from "../../Store/CartContext";
+import { useCart } from "../../Store/CartContext";
 // import { CartContext } from "../../Store/CategoriesContext";
 // TODO: implement shake effect when user clicks the add to cart
 const Products = ({ products }) => {
-  const { setItemsInCart } = useCart();
-  const addToCart = (item) => {
-    setItemsInCart((prevState) => [...prevState, item]);
+  const { setItemsInCart, setSubTotal } = useCart();
+  const addToCart = (item, price, discountPercentage) => {
+    setItemsInCart((prevState) => [...prevState,{...item,quantity:1} ]);
+    const amount =
+      Math.round((price - price * (discountPercentage / 100)) * 100) / 100;
+      setSubTotal((prevState) => [Number(prevState) + amount]);
   };
 
   return (
@@ -60,7 +63,9 @@ const Products = ({ products }) => {
             <a
               href="#"
               className="flex items-center justify-center rounded-md bg-slate-900 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-blue-300"
-              onClick={() => addToCart(item)}
+              onClick={() =>
+                addToCart(item, item.price, item.discountPercentage)
+              }
             >
               <IoMdCart className="mr-2 h-6 w-6" />
               Add to cart

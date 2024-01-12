@@ -96,7 +96,7 @@ const Login = () => {
 export const signin = async (data) => {
   let formData = await data.request.formData();
   formData = Object.fromEntries(formData);
-  console.log(formData.username);
+  // console.log(formData.username);
   try {
     const response = await fetch("https://dummyjson.com/auth/login", {
       method: "POST",
