@@ -5,13 +5,9 @@ import { useCart } from "../../Store/CartContext";
 // import { CartContext } from "../../Store/CategoriesContext";
 // TODO: implement shake effect when user clicks the add to cart
 const Products = ({ products }) => {
-  const { setItemsInCart, setSubTotal } = useCart();
-  const addToCart = (item, price, discountPercentage) => {
-    setItemsInCart((prevState) => [...prevState,{...item,quantity:1} ]);
-    const amount =
-      Math.round((price - price * (discountPercentage / 100)) * 100) / 100;
-      setSubTotal((prevState) => [Number(prevState) + amount]);
-  };
+  const {  addToCart } = useCart();
+  
+  
 
   return (
     <>
