@@ -1,10 +1,22 @@
 import { useCart } from "../Store/CartContext";
 import { IoMdArrowBack } from "react-icons/io";
+
 // import {useHistory} from 'react-router-dom';
 
 import ProductinCart from "./ProductinCart";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+
 const Cart = () => {
+  const navigate = useNavigate();
+  // const history=useHistory()
+
   const { goBack, noOfItemsInCart, subTotal } = useCart();
+  useEffect(() => {
+    if (noOfItemsInCart <= 0) {
+      navigate("/");
+    }
+  }, [navigate, noOfItemsInCart]);
   return (
     <>
       <button
@@ -16,7 +28,9 @@ const Cart = () => {
         <span>Go back</span>
       </button>
       {noOfItemsInCart == 0 ? (
-        <div className="min-h-56 flex justify-center items-center">no items in cart add smthng</div>
+        <div className="min-h-56 flex justify-center items-center">
+          no items in cart add smthng
+        </div>
       ) : (
         <div className="container mx-auto px-4 py-8">
           <div className="flex flex-col md:flex-row md:justify-between md:items-center">

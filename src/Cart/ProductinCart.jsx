@@ -1,7 +1,10 @@
 import { useCart } from "../Store/CartContext";
+// import { MdDelete } from "react-icons/md";
+// import { MdDelete } from "react-icons/md";
+import { RiDeleteBin5Line } from "react-icons/ri";
 
 const ProductinCart = () => {
-  const { itemsInCart, handleAdd, handleSub } = useCart();
+  const { itemsInCart, handleAdd, handleSub, removefromCart } = useCart();
 
   return (
     <>
@@ -50,11 +53,20 @@ const ProductinCart = () => {
                     +{/*  */}
                   </button>
                 </div>
-                <span className="ml-4 font-bold">
-                  {Math.round(
-                    items.price - items.price * (items.discountPercentage / 100)
-                  ) * items.quantity}
-                </span>
+                <div className="flex justify-center items-center gap-10 flex-row  ">
+                  <div className="ml-4 font-bold">
+                    {Math.round(
+                      items.price -
+                        items.price * (items.discountPercentage / 100)
+                    ) * items.quantity}
+                  </div>
+                  <RiDeleteBin5Line
+                    color="red"
+                    className="text-3xl cursor-pointer"
+                    onClick={() => removefromCart(items.id)}
+                  />
+                  {/* color="red"/> */}
+                </div>
               </div>
             </div>
           </div>

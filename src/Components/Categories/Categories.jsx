@@ -3,12 +3,14 @@ import {  useEffect, useState } from "react";
 import Products from "../Products/Products";
 import { useNavigate, useParams } from "react-router-dom";
 import { useClickedCategory } from "../../Store/ClickedCategoriesContext";
+import SpinnerLoading from "../SpinnerLoading";
 
 const Categories = () => {
   const navigate = useNavigate();
   const { categoryName } = useParams();
   const [products, setProducts] = useState([]);
   const { categoriesClicked, setCategoriesClicked } = useClickedCategory();
+  const [fetching,setFetching]=useState(true)
   useEffect(() => {
     let storedClickedCategories;
     if (categoryName) {
@@ -24,6 +26,8 @@ const Categories = () => {
           navigate("/404");
         }
         setProducts(data.products);
+        setFetching(false)
+
       });
   }, [categoriesClicked]);
   return (
@@ -37,9 +41,10 @@ const Categories = () => {
           {categoriesClicked.toUpperCase()}
         </a>
       </div>
-      <div className="grid grid-cols-1 z-20 md:grid-cols-3 lg:grid-cols-3 bg-slate-200 ">
+      {fetching && <SpinnerLoading/>}
+      {!fetching && <div className="grid grid-cols-1 z-20 md:grid-cols-3 lg:grid-cols-3 bg-slate-200 ">
         <Products products={products} />
-      </div>
+      </div> }
     </>
   );
 };

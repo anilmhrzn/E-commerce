@@ -12,6 +12,7 @@ export const CartContext = createContext({
   handleAdd: () => {},
   addToCart: () => {},
   goBack: () => {},
+  removefromCart: () => {},
 });
 
 export const CartContextProvider = ({ children }) => {
@@ -45,6 +46,19 @@ export const CartContextProvider = ({ children }) => {
       setSubTotal((prevState) => [Number(prevState) + amount]);
     }
   };
+
+  const removefromCart = (itemId) => {
+    setItemsInCart((prevState) =>
+      prevState.filter((item) => item.id !== itemId)
+    );
+
+    // const itemAlreadyExists = itemsInCart.some((items) => items.id === item.id);
+    // if (!itemAlreadyExists) {
+    //   setItemsInCart((prevState) => [...prevState, { ...item, quantity: 1 }]);
+    //   const amount = Math.round(price - price * (discountPercentage / 100));
+    //   setSubTotal((prevState) => [Number(prevState) + amount]);
+    // }
+  };
   const navigate = useNavigate();
   const goBack = () => {
     // console.log('press');
@@ -62,6 +76,7 @@ export const CartContextProvider = ({ children }) => {
         handleAdd,
         addToCart,
         goBack,
+        removefromCart,
       }}
     >
       {children}
