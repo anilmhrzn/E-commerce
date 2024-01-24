@@ -1,4 +1,4 @@
-import { useCart } from "../../Store/CartContext";
+import { useCart } from "../Store/CartContext";
 import { IoMdArrowBack } from "react-icons/io";
 // import {useHistory} from 'react-router-dom';
 
